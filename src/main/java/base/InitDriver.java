@@ -58,11 +58,12 @@ public class InitDriver
 	}
 	
 	public void initializationWebDriver(String url) throws InterruptedException {
+		System.out.println(System.getProperty("user.dir")+"/downloadFiles");
 		System.setProperty("webDriver.chrome.driver",System.getProperty("user.dir")+"/chromedriver120.exe");
 		ChromeOptions options = new ChromeOptions();
 		
 		Map<String, Object> prefs = new HashMap<>();
-        prefs.put("download.default_directory", System.getProperty("user.dir"));
+        prefs.put("download.default_directory", System.getProperty("user.dir")+"\\downloadFiles");
         prefs.put("download.prompt_for_download", false); // Optional: Disable download prompt
 
         options.setExperimentalOption("prefs", prefs);
