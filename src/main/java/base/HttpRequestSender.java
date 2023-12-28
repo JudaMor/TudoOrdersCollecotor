@@ -1,6 +1,10 @@
 package base;
 
 import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.StandardCopyOption;
 
 import io.restassured.RestAssured;
 import io.restassured.http.ContentType;
@@ -31,6 +35,24 @@ public class HttpRequestSender {
 //	                .statusCode(200) // Replace with the expected status code
 //	                .log().all();
 	}
-	
+	 public  void removeFirstLineFromCSV(String inputFilePath) throws IOException {
+	        Path inputFile = Path.of(inputFilePath);
+	        Path tempFile = Files.createTempFile(null, null);
+
+	        try (var lines = Files.lines(inputFile);
+	             var writer = Files.newBufferedWriter(tempFile)) {
+
+	            lines.skip(1).forEach(line -> {
+	                try {
+	                    writer.write(line);
+	                    writer.newLine();
+	                } catch (IOException e) {
+	                    throw new RuntimeException(e);
+	                }
+	            });
+	        }
+
+	        Files.move(tempFile, inputFile, StandardCopyOption.REPLACE_EXISTING);
+	    }
 
 }

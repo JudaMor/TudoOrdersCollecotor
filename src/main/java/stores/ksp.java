@@ -35,7 +35,8 @@ public class ksp {
 	  CsvCovertor.convertXlsToCsv(System.getProperty("user.dir")+"//DownloadFiles//"+fileName, System.getProperty("user.dir")+"//ksp.csv");
 	  FileUtils.delete(listOfFiles[i]);
 	}
-	requestSender.sendWebhookAndCsvFile("https://hook.eu2.make.com/m289hxqxlh7v0vj314txke9jokunr1ci", "C:\\dev\\TudoOrdersCollecotor\\ksp.csv");
+	requestSender.removeFirstLineFromCSV(System.getProperty("user.dir")+"//ksp.csv");
+	requestSender.sendWebhookAndCsvFile("https://hook.eu2.make.com/m289hxqxlh7v0vj314txke9jokunr1ci", System.getProperty("user.dir")+"//ksp.csv");
 	}
     //כולל הורדת קובץ אקסל של הזמנות שעדיין לא נכנסו לטיפול?...
 }
