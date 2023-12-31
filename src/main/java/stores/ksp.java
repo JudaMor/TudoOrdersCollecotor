@@ -28,13 +28,7 @@ public class ksp {
     Thread.sleep(5000);
     initDriver.closeDriver();
 
-    File folder = new File(System.getProperty("user.dir")+"//DownloadFiles");
-	File[] listOfFiles = folder.listFiles();
-	for (int i = 0; i < listOfFiles.length; i++) {
-	  String fileName = listOfFiles[i].getName();
-	  CsvCovertor.convertXlsToCsv(System.getProperty("user.dir")+"//DownloadFiles//"+fileName, System.getProperty("user.dir")+"//ksp.csv");
-	  FileUtils.delete(listOfFiles[i]);
-	}
+    CsvCovertor.organizeXLfiles();
 	requestSender.removeFirstLineFromCSV(System.getProperty("user.dir")+"//ksp.csv");
 	requestSender.sendWebhookAndCsvFile("https://hook.eu2.make.com/m289hxqxlh7v0vj314txke9jokunr1ci", System.getProperty("user.dir")+"//ksp.csv");
 	}

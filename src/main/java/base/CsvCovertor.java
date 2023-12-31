@@ -10,6 +10,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Iterator;
 
+import org.apache.commons.io.FileUtils;
 import org.apache.poi.sl.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -44,5 +45,13 @@ public class CsvCovertor {
 	            e.printStackTrace();
 	        }
 	    }
-
+	public static void organizeXLfiles() throws IOException {
+	 File folder = new File(System.getProperty("user.dir")+"//DownloadFiles");
+		File[] listOfFiles = folder.listFiles();
+		for (int i = 0; i < listOfFiles.length; i++) {
+		  String fileName = listOfFiles[i].getName();
+		  CsvCovertor.convertXlsToCsv(System.getProperty("user.dir")+"//DownloadFiles//"+fileName, System.getProperty("user.dir")+"//ksp.csv");
+		  FileUtils.delete(listOfFiles[i]);
+		}
+	}
 }
